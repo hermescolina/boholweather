@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     console.log("Dropdown options added successfully!"); 
 
-    // ✅ Set default town to Loboc
+    // ✅ Set default town to Loboc and fetch weather
     cityInput.value = "Loboc";
     fetchWeather("Loboc");
 
@@ -43,7 +43,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 });
-
 
 async function fetchWeather(city) {
     try {
@@ -60,7 +59,6 @@ async function fetchWeather(city) {
     }
 }
 
-
 function updateUI(data) {
     document.getElementById("cityName").textContent = data.location.name;
     document.getElementById("weatherIcon").src = data.current.condition.icon;
@@ -73,7 +71,8 @@ function updateUI(data) {
 
     data.forecast.forecastday.forEach(day => {
         const date = new Date(day.date);
-        const formattedDate = `${date.getMonth() + 1}/${date.getDate()}`; 
+        const options = { weekday: 'long', month: 'long', day: 'numeric' };
+        const formattedDate = date.toLocaleDateString('en-US', options); // ✅ Example: "Monday, April 1"
 
         const forecastItem = document.createElement("div");
         forecastItem.classList.add("forecast-day");
