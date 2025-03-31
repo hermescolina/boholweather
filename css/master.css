@@ -27,7 +27,7 @@ body {
 header {
     width: 100%;
     padding: 20px;
-    background: #FF5B00; /* Klook Orange */
+    background: #FF6F30; /* Klook Orange */
     color: white;
     text-align: center;
     font-size: 1.8rem;
@@ -102,8 +102,8 @@ main {
 }
 
 #weatherIcon {
-    width: 120px;
-    height: 120px;
+    width: 80px;
+    height: 80px;
     margin: 10px 0;
 }
 
