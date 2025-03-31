@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather API Website</title>
+    <link rel="stylesheet" href="css/master.css">
+    <link rel="icon" type="image/png" href="images/favicon.png">
+</head>
+
+<body>
+    <header>
+        <h1>Weather Forecast</h1>
+    </header>
+    
+    <main>
+        <section id="search">
+            <input type="text" id="cityInput" placeholder="Enter city name" list="cityList">
+            <datalist id="cityList"></datalist> <!-- ✅ Add this to make the dropdown work -->
+            <button id="searchBtn">Get Weather</button>
+        </section>
+        
+        <section id="weatherResults">
+            <h2 id="cityName"></h2>
+            <img id="weatherIcon" src="" alt="Weather Icon">
+            <p id="temperature"></p>
+            <p id="weatherDescription"></p>
+        </section>
+
+        <!-- NEW 7-Day Forecast Section -->
+        <section id="forecast-container">
+            <h2>7-Day Forecast</h2>
+            <div id="forecast"></div>
+        </section>
+    </main>
+    
+    <script src="js/main.js"></script>
+</body>
+
+</html>

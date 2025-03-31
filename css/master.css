@@ -1,0 +1,164 @@
+/* Reset some default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* Style the body */
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: linear-gradient(to right, #4facfe, #00f2fe);
+    color: white;
+    text-align: center;
+    padding: 20px;
+    width: 100%;
+}
+
+/* Header */
+header {
+    width: 100%;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.2);
+    text-align: center;
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+/* Main Content */
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 95%;
+    max-width: 800px;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Search Section */
+#search {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+#cityInput {
+    flex: 1;
+    min-width: 250px;
+    max-width: 450px;
+    padding: 12px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.9);
+}
+
+#searchBtn {
+    padding: 12px 20px;
+    font-size: 1rem;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#searchBtn:hover {
+    background: #0056b3;
+}
+
+/* Weather Results */
+#weatherResults {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 20px 0;
+}
+
+#weatherIcon {
+    width: 100px;
+    height: 100px;
+    margin: 10px 0;
+}
+
+#cityName {
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+#temperature {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+/* 3-Day Forecast */
+#forecast-container {
+    width: 100%;
+    margin-top: 20px;
+}
+
+#forecast {
+    display: flex;
+    justify-content: space-around;
+    gap: 15px;
+    width: 100%;
+    max-width: 750px;
+}
+
+/* Each forecast day */
+.forecast-day {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.3);
+    padding: 12px;
+    border-radius: 8px;
+    width: 30%;
+    text-align: center;
+    min-width: 120px;
+}
+
+.forecast-day img {
+    width: 60px;
+    height: 60px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    #forecast {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .forecast-day {
+        width: 80%;
+        margin-bottom: 10px;
+    }
+}
+
+@media (min-width: 1024px) {
+    main {
+        max-width: 850px;
+    }
+
+    #forecast {
+        justify-content: space-between;
+    }
+
+    .forecast-day {
+        width: 28%;
+    }
+}
