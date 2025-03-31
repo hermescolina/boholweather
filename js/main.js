@@ -29,6 +29,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     console.log("Dropdown options added successfully!"); 
 
+    // ✅ Set default town to Loboc
+    cityInput.value = "Loboc";
+    fetchWeather("Loboc");
+
     // ✅ Handle the search button click event
     searchBtn.addEventListener("click", () => {
         const city = cityInput.value.trim();
