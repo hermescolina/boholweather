@@ -1,9 +1,12 @@
-/* Reset some default styles */
+/* Import Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+/* Reset default styles */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, sans-serif;
+    font-family: 'Poppins', sans-serif;
 }
 
 /* Style the body */
@@ -13,8 +16,8 @@ body {
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-    background: linear-gradient(to right, #4facfe, #00f2fe);
-    color: white;
+    background: #FFF5E1; /* Light warm background */
+    color: #333;
     text-align: center;
     padding: 20px;
     width: 100%;
@@ -24,10 +27,12 @@ body {
 header {
     width: 100%;
     padding: 20px;
-    background: rgba(0, 0, 0, 0.2);
+    background: #FF5B00; /* Klook Orange */
+    color: white;
     text-align: center;
     font-size: 1.8rem;
     font-weight: bold;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 /* Main Content */
@@ -35,12 +40,12 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 95%;
-    max-width: 800px;
-    background: rgba(255, 255, 255, 0.2);
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 850px;
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.1);
 }
 
 /* Search Section */
@@ -49,34 +54,42 @@ main {
     width: 100%;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 10px;
+    gap: 12px;
     margin-bottom: 20px;
 }
 
 #cityInput {
     flex: 1;
-    min-width: 250px;
+    min-width: 280px;
     max-width: 450px;
-    padding: 12px;
+    padding: 14px;
     font-size: 1rem;
-    border: none;
-    border-radius: 5px;
-    background: rgba(255, 255, 255, 0.9);
+    border: 2px solid #FF5B00;
+    border-radius: 8px;
+    background: #fff;
+    outline: none;
+    transition: 0.3s;
 }
 
+#cityInput:focus {
+    border-color: #E04E00;
+}
+
+/* Search Button */
 #searchBtn {
-    padding: 12px 20px;
+    padding: 14px 24px;
     font-size: 1rem;
-    background: #007bff;
+    font-weight: bold;
+    background: #FF5B00;
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
     transition: 0.3s;
 }
 
 #searchBtn:hover {
-    background: #0056b3;
+    background: #E04E00;
 }
 
 /* Weather Results */
@@ -89,19 +102,21 @@ main {
 }
 
 #weatherIcon {
-    width: 100px;
-    height: 100px;
+    width: 120px;
+    height: 120px;
     margin: 10px 0;
 }
 
 #cityName {
     font-size: 1.8rem;
     font-weight: bold;
+    color: #222;
 }
 
 #temperature {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     font-weight: bold;
+    color: #FF5B00;
 }
 
 /* 3-Day Forecast */
@@ -123,12 +138,18 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background: rgba(255, 255, 255, 0.3);
-    padding: 12px;
-    border-radius: 8px;
+    background: #fff;
+    padding: 14px;
+    border-radius: 10px;
     width: 30%;
     text-align: center;
     min-width: 120px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition: 0.3s;
+}
+
+.forecast-day:hover {
+    transform: scale(1.05);
 }
 
 .forecast-day img {
@@ -145,13 +166,13 @@ main {
 
     .forecast-day {
         width: 80%;
-        margin-bottom: 10px;
+        margin-bottom: 12px;
     }
 }
 
 @media (min-width: 1024px) {
     main {
-        max-width: 850px;
+        max-width: 900px;
     }
 
     #forecast {
