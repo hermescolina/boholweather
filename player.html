@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Player</title>
+    <link rel="stylesheet" href="css/master.css">
+</head>
+<body>
+    <header>
+        <h1>YouTube Player</h1>
+    </header>
+    <main>
+        <section id="player-section">
+            <iframe id="youtubePlayer" width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </section>
+        <section id="controls">
+            <input type="text" id="videoInput" placeholder="Enter YouTube URL or ID">
+            <button id="loadBtn">Load Video</button>
+        </section>
+    </main>
+    <script src="js/youtube.js"></script>
+</body>
+</html>
