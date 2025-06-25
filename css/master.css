@@ -183,3 +183,38 @@ main {
         width: 28%;
     }
 }
+
+/* Styles for the YouTube player page */
+#player-section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+#controls {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+#videoInput {
+    flex: 1;
+    min-width: 250px;
+    padding: 10px;
+    border: 2px solid #FF5B00;
+    border-radius: 8px;
+}
+
+#loadBtn {
+    padding: 10px 20px;
+    background: #FF5B00;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+#loadBtn:hover {
+    background: #E04E00;
+}
