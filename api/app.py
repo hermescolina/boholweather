@@ -127,6 +127,60 @@ class ItemSchema(BaseModel):
         orm_mode = True
 
 
+class ItemBase(BaseModel):
+    item_id: Optional[int] = None
+    item_type: Optional[str] = None
+    title: Optional[str] = None
+    description: Optional[str] = None
+    price: Optional[float] = None
+    location: Optional[str] = None
+    image: Optional[str] = None
+    available_slots: Optional[int] = None
+    start_date: Optional[date] = None
+    end_date: Optional[date] = None
+    duration_days: Optional[int] = None
+    capacity: Optional[int] = None
+    rating: Optional[float] = None
+    is_featured: Optional[bool] = None
+    created_at: Optional[datetime] = None
+    vendor_id: Optional[int] = None
+    slug: Optional[str] = None
+    status: Optional[str] = None
+    promo_price: Optional[float] = None
+    max_guests: Optional[int] = None
+    last_updated: Optional[datetime] = None
+    tags: Optional[str] = None
+    category_id: Optional[int] = None
+
+
+class ItemCreate(ItemBase):
+    item_type: str
+    title: str
+
+
+class ItemUpdate(ItemBase):
+    pass
+
+
+class TourBase(BaseModel):
+    about: Optional[str] = None
+    history: Optional[str] = None
+    expectations: Optional[dict] = None
+    tips: Optional[dict] = None
+    views: Optional[int] = 0
+    inclusions: Optional[str] = None
+    exclusions: Optional[str] = None
+    tour_itinerary: Optional[dict] = None
+
+
+class TourCreate(TourBase):
+    pass
+
+
+class TourUpdate(TourBase):
+    pass
+
+
 app = FastAPI()
 
 
@@ -151,10 +205,98 @@ def read_item(item_id: int, db: Session = Depends(get_db)):
     return item
 
 
+@app.post("/items", response_model=ItemSchema)
+def create_item(item: ItemCreate, db: Session = Depends(get_db)):
+    db_item = Item(**item.dict())
+    db.add(db_item)
+    db.commit()
+    db.refresh(db_item)
+    return db_item
+
+
+@app.put("/items/{item_id}", response_model=ItemSchema)
+def update_item(item_id: int, item: ItemUpdate, db: Session = Depends(get_db)):
+    db_item = db.query(Item).filter(Item.id == item_id).first()
+    if not db_item:
+        raise HTTPException(status_code=404, detail="Item not found")
+    for key, value in item.dict().items():
+        setattr(db_item, key, value)
+    db.commit()
+    db.refresh(db_item)
+    return db_item
+
+
+@app.patch("/items/{item_id}", response_model=ItemSchema)
+def patch_item(item_id: int, item: ItemUpdate, db: Session = Depends(get_db)):
+    db_item = db.query(Item).filter(Item.id == item_id).first()
+    if not db_item:
+        raise HTTPException(status_code=404, detail="Item not found")
+    update_data = item.dict(exclude_unset=True)
+    for key, value in update_data.items():
+        setattr(db_item, key, value)
+    db.commit()
+    db.refresh(db_item)
+    return db_item
+
+
+@app.delete("/items/{item_id}")
+def delete_item(item_id: int, db: Session = Depends(get_db)):
+    db_item = db.query(Item).filter(Item.id == item_id).first()
+    if not db_item:
+        raise HTTPException(status_code=404, detail="Item not found")
+    db.delete(db_item)
+    db.commit()
+    return {"detail": "Item deleted"}
+
+
 @app.get("/tours/{tour_id}", response_model=TourSchema)
 def read_tour(tour_id: int, db: Session = Depends(get_db)):
     tour = db.query(Tour).filter(Tour.id == tour_id).first()
     if not tour:
         raise HTTPException(status_code=404, detail="Tour not found")
     return tour
+
+
+@app.post("/tours", response_model=TourSchema)
+def create_tour(tour: TourCreate, db: Session = Depends(get_db)):
+    db_tour = Tour(**tour.dict())
+    db.add(db_tour)
+    db.commit()
+    db.refresh(db_tour)
+    return db_tour
+
+
+@app.put("/tours/{tour_id}", response_model=TourSchema)
+def update_tour(tour_id: int, tour: TourUpdate, db: Session = Depends(get_db)):
+    db_tour = db.query(Tour).filter(Tour.id == tour_id).first()
+    if not db_tour:
+        raise HTTPException(status_code=404, detail="Tour not found")
+    for key, value in tour.dict().items():
+        setattr(db_tour, key, value)
+    db.commit()
+    db.refresh(db_tour)
+    return db_tour
+
+
+@app.patch("/tours/{tour_id}", response_model=TourSchema)
+def patch_tour(tour_id: int, tour: TourUpdate, db: Session = Depends(get_db)):
+    db_tour = db.query(Tour).filter(Tour.id == tour_id).first()
+    if not db_tour:
+        raise HTTPException(status_code=404, detail="Tour not found")
+    update_data = tour.dict(exclude_unset=True)
+    for key, value in update_data.items():
+        setattr(db_tour, key, value)
+    db.commit()
+    db.refresh(db_tour)
+    return db_tour
+
+
+@app.delete("/tours/{tour_id}")
+def delete_tour(tour_id: int, db: Session = Depends(get_db)):
+    db_tour = db.query(Tour).filter(Tour.id == tour_id).first()
+    if not db_tour:
+        raise HTTPException(status_code=404, detail="Tour not found")
+    db.delete(db_tour)
+    db.commit()
+    return {"detail": "Tour deleted"}
 
